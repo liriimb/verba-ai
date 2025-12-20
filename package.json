@@ -9,11 +9,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "concurrently -n backend,frontend -c auto \"npm run dev -w backend\" \"npm run dev -w frontend\"",
     "lint": "npm run lint -w backend && npm run lint -w frontend",
     "test": "npm run test -w backend && npm run test -w frontend",
     "format": "prettier . --write"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "prettier": "^3.7.4"
   },
   "repository": {
