@@ -1,0 +1,31 @@
+{
+  "name": "verba-ai",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "npm run lint -w backend && npm run lint -w frontend",
+    "test": "npm run test -w backend && npm run test -w frontend",
+    "format": "prettier . --write"
+  },
+  "devDependencies": {
+    "prettier": "^3.7.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liriimb/verba-ai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/liriimb/verba-ai/issues"
+  },
+  "homepage": "https://github.com/liriimb/verba-ai#readme"
+}
