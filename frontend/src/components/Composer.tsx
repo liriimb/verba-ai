@@ -25,6 +25,9 @@ export function Composer({
         placeholder="Type your message..."
         helperText="Enter to send • Shift+Enter for new line"
         value={text}
+        minRows={1}
+        maxRows={6}
+        multiline
         onChange={(e) => setText(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === 'Enter' && !e.shiftKey) {
