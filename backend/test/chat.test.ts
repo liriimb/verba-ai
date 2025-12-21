@@ -8,7 +8,7 @@ describe('POST /api/chat', () => {
     const res = await app.inject({
       method: 'POST',
       url: '/api/chat',
-      payload: { message: 'hello' }
+      payload: { message: 'hello' },
     });
 
     expect(res.statusCode).toBe(200);
@@ -25,7 +25,7 @@ describe('POST /api/chat', () => {
     const res = await app.inject({
       method: 'POST',
       url: '/api/chat',
-      payload: { message: '   ' }
+      payload: { message: '   ' },
     });
 
     expect(res.statusCode).toBe(400);

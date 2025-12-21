@@ -1,11 +1,5 @@
 export default [
   {
-    ignores: [
-      '**/node_modules/**',
-      '**/dist/**',
-      '**/build/**',
-      '**/.vite/**',
-      '**/coverage/**'
-    ]
-  }
+    ignores: ['**/node_modules/**', '**/dist/**', '**/build/**', '**/.vite/**', '**/coverage/**'],
+  },
 ];

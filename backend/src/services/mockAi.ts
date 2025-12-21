@@ -24,7 +24,7 @@ export function getMockReply(message: string, history: ChatMessage[]): string {
   }
 
   if (lastUser) {
-    return "Thanks — I understand. Can you add one more detail (account/email/order number) so I can help faster?";
+    return 'Thanks — I understand. Can you add one more detail (account/email/order number) so I can help faster?';
   }
 
   return 'Thanks! Can you clarify what you need help with?';
