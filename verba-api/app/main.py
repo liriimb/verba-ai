@@ -10,7 +10,7 @@ from .mock_ai import get_mock_reply
 from .models import ChatMessage, ChatRequest, ChatResponse
 from .store import InMemoryConversationStore
 
-app = FastAPI(title="Verba AI Mock Chat API", version="1.0.0")
+app = FastAPI(title="Verba AI Mock API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,

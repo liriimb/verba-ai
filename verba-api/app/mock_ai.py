@@ -19,7 +19,7 @@ def get_mock_reply(message: str, history: List[ChatMessage]) -> str:
         return "Sure — can you share your order number? I can guide you through the return/refund steps."
 
     if "price" in m or "pricing" in m:
-        return "Happy to help. Which product/plan are you asking about, and what’s your approximate usage?"
+        return "Happy to help. Which product/plan are you asking about, and what's your approximate usage?"
 
     if last_user:
         return "Thanks — I understand. Can you add one more detail (account/email/order number) so I can help faster?"
