@@ -1,40 +1,29 @@
-import { Box, Paper, Typography } from '@mui/material';
+import { Avatar, Box, Paper, Typography } from '@mui/material';
+import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
 import type { ChatMessage } from '../../types/chat';
 import { formatTime } from '../../utils/time';
+import { chatStyles as styles } from '../../utils/chatStyles';
 
 export function MessageBubble({ message }: { message: ChatMessage }) {
   const isUser = message.role === 'user';
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: isUser ? 'flex-end' : 'flex-start',
-        mb: 1,
-        minWidth: 0,
-      }}
-    >
+    <Box sx={isUser ? styles.rowUser : styles.rowAssistant}>
+      {!isUser && (
+        <Avatar sx={styles.assistantAvatar}>
+          <SupportAgentOutlinedIcon fontSize="small" />
+        </Avatar>
+      )}
+
       <Paper
         elevation={1}
-        sx={{
-          px: 2,
-          py: 1.25,
-          maxWidth: '85%',
-          borderRadius: 2,
-          minWidth: 0,
-        }}
+        sx={isUser ? styles.userBubble : styles.assistantBubble}
       >
-        <Typography
-          variant="body1"
-          sx={{
-            whiteSpace: 'pre-wrap',
-            overflowWrap: 'anywhere',
-            wordBreak: 'break-word',
-          }}
-        >
+        <Typography variant="body1" sx={styles.messageText}>
           {message.text}
         </Typography>
-        <Typography variant="caption" sx={{ opacity: 0.7, display: 'block', mt: 0.5 }}>
+
+        <Typography variant="caption" sx={styles.timestamp}>
           {formatTime(message.timestamp)}
         </Typography>
       </Paper>
