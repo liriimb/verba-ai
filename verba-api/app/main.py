@@ -38,7 +38,9 @@ def chat(payload: ChatRequest):
     if not message:
         raise HTTPException(status_code=400, detail={"error": "Message is required."})
 
-    conversation_id = payload.conversationId.strip() if payload.conversationId else uuid4().hex
+    conversation_id = (
+        payload.conversationId.strip() if payload.conversationId else uuid4().hex
+    )
 
     history = store.get_history(conversation_id)
     reply_text = get_mock_reply(message, history)
@@ -54,4 +56,6 @@ def chat(payload: ChatRequest):
         ],
     )
 
-    return ChatResponse(conversationId=conversation_id, reply=reply_text, timestamp=ai_time)
+    return ChatResponse(
+        conversationId=conversation_id, reply=reply_text, timestamp=ai_time
+    )

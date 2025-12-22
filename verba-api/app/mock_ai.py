@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import List
 from .models import ChatMessage
 
+
 def get_mock_reply(message: str, history: List[ChatMessage]) -> str:
     m = message.lower()
 

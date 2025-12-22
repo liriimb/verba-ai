@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import Dict, List
 from .models import ChatMessage
 
+
 class InMemoryConversationStore:
     def __init__(self, max_messages_per_conversation: int = 50):
         self._max = max_messages_per_conversation
