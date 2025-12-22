@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export function Composer({
   disabled,
-  onSend
+  onSend,
 }: {
   disabled: boolean;
   onSend: (text: string) => void;

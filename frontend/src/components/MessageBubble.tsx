@@ -10,7 +10,8 @@ export function MessageBubble({ message }: { message: ChatMessage }) {
       sx={{
         display: 'flex',
         justifyContent: isUser ? 'flex-end' : 'flex-start',
-        mb: 1
+        mb: 1,
+        minWidth: 0,
       }}
     >
       <Paper
@@ -19,10 +20,16 @@ export function MessageBubble({ message }: { message: ChatMessage }) {
           px: 2,
           py: 1.25,
           maxWidth: '85%',
-          borderRadius: 2
+          borderRadius: 2,
+          minWidth: 0,
         }}
       >
-        <Typography variant="body1" sx={{ whiteSpace: 'pre-wrap' }}>
+        <Typography variant="body1" 
+        sx={{ 
+          whiteSpace: 'pre-wrap',
+          wordBreak: 'break-word',
+          overflowWrap: 'anywhere',
+        }}>
           {message.text}
         </Typography>
 
