@@ -88,10 +88,11 @@ Frontend:
 cd frontend
 npm install
 npm run dev
-
+```
 ---
 
 ## Testing
+```
 (execute terminal/powershell inside verba-api folder):
 .\.venv\Scripts\Activate.ps1
 pytest
@@ -113,19 +114,19 @@ ruff format .
 From repo root:
 
 npm run format
-
+```
 ---
 
-How this would integrate with a real AI agent
+## How this would integrate with a real AI agent
 
-The backend currently returns deterministic/rule-based replies to simulate an AI assistant. In a production setup, /api/chat would typically:
+## The backend currently returns deterministic/rule-based replies to simulate an AI assistant. In a production setup, /api/chat would typically:
 
-Validate input and resolve session/conversation context.
+- Validate input and resolve session/conversation context.
 
-Load history from a persistent store (DB/Redis) instead of in-memory state.
+- Load history from a persistent store (DB/Redis) instead of in-memory state.
 
-Call an AI agent/LLM layer with system instructions, user message, and relevant context (orders/docs/profile).
+- Call an AI agent/LLM layer with system instructions, user message, and relevant context (orders/docs/profile).
 
-Optionally stream responses (SSE/WebSocket) for token-by-token output.
+- Optionally stream responses (SSE/WebSocket) for token-by-token output.
 
-Persist assistant replies and add observability (request IDs, logs, metrics) + rate limits.
+- Persist assistant replies and add observability (request IDs, logs, metrics) + rate limits.
