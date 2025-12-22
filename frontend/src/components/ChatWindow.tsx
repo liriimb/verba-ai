@@ -1,48 +1,23 @@
 import { Box, Button, CircularProgress, Container, Paper, Typography } from '@mui/material';
-import { useEffect, useRef, useState } from 'react';
-import { nanoid } from 'nanoid';
-import { sendChatMessage } from '../api/chatApi';
-import type { ChatMessage } from '../types/chat';
+import { useEffect, useRef} from 'react';
 import { MessageBubble } from './MessageBubble';
 import { Composer } from './Composer';
-import axios from 'axios';
 import { useChatStorage } from '../hooks/useChatStorage';
+import { useChatController } from '../hooks/useChatController';
 
 const STORAGE_MESSAGES_KEY = 'verba_ai_messages';
 
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-function getErrorMessage(err: unknown): string {
-  if (axios.isAxiosError(err)) {
-    const apiMsg = (err.response?.data as { error?: string } | undefined)?.error ?? err.message;
-    return apiMsg || 'Request failed.';
-  }
-
-  if (err instanceof Error) {
-    return err.message;
-  }
-
-  return 'Something went wrong while sending the message.';
-}
-
 export function ChatWindow() {
-  const [isSending, setIsSending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+
   const { conversationId, setConversationId, messages, setMessages, reset } = useChatStorage();
+  const { isSending, error, setError, send, cancelInFlight } = useChatController({
+    conversationId,
+    setConversationId,
+    setMessages,
+    minTypingMs: 750,
+  });
 
-  const abortRef = useRef<AbortController | null>(null);
   const bottomRef = useRef<HTMLDivElement | null>(null);
-
-  function cancelInFlight() {
-  abortRef.current?.abort();
-  abortRef.current = null;
-  }
-
-  useEffect(() => {
-    return () => cancelInFlight();
-  }, []);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -59,56 +34,7 @@ export function ChatWindow() {
   }
 
   async function handleSend(text: string) {
-    setError(null);
-
-    const userMsg: ChatMessage = {
-      id: nanoid(),
-      role: 'user',
-      text,
-      timestamp: new Date().toISOString(),
-    };
-
-    setMessages((prev) => [...prev, userMsg]);;
-
-    cancelInFlight();
-    const controller = new AbortController();
-    abortRef.current = controller;
-
-    setIsSending(true);
-
-    const start = Date.now();
-    const MIN_TYPING_MS = 800;
-
-    try {
-      const data = await sendChatMessage(
-        { message: text, conversationId },
-        controller.signal,
-      );
-
-      const elapsed = Date.now() - start;
-      if (elapsed < MIN_TYPING_MS) {
-        await sleep(MIN_TYPING_MS - elapsed);
-      }
-
-      setConversationId(data.conversationId);
-
-      const assistantMsg: ChatMessage = {
-        id: nanoid(),
-        role: 'assistant',
-        text: data.reply,
-        timestamp: data.timestamp,
-      };
-
-      setMessages((prev) => [...prev, assistantMsg]);
-    } catch (err: unknown) {
-      if (axios.isAxiosError(err) && err.code === 'ERR_CANCELED') {
-        return
-      }
-      setError(getErrorMessage(err));
-    } finally {
-      abortRef.current = null;
-      setIsSending(false);
-    }
+    await send(text);
   }
 
   return (
