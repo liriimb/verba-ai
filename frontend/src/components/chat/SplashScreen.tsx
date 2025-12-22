@@ -18,16 +18,14 @@ export function SplashScreen({ leaving = false }: { leaving?: boolean }) {
       <Box
         sx={{
           textAlign: 'center',
-          animation: 'splashIn 650ms ease-out both'
+          animation: 'splashIn 650ms ease-out both',
         }}
       >
         <SmartToyIcon sx={{ fontSize: 56, mb: 1 }} />
         <Typography variant="h4" sx={{ fontWeight: 700, mb: 0.5 }}>
           Verba AI
         </Typography>
-        <Typography sx={{ opacity: 0.75, mb: 2 }}>
-          Welcome! - preparing your chat…
-        </Typography>
+        <Typography sx={{ opacity: 0.75, mb: 2 }}>Welcome dear user! - preparing your chat…</Typography>
         <CircularProgress size={22} />
       </Box>
 

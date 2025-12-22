@@ -2,7 +2,7 @@ import type { FastifyInstance } from 'fastify';
 import { nanoid } from 'nanoid';
 import { getMockReply, type ChatMessage } from '../services/mockAi.js';
 
-const MAX_CONVERSATIONS = 20; 
+const MAX_CONVERSATIONS = 20;
 const MAX_MESSAGES_PER_CONVO = 80;
 
 const conversations = new Map<string, ChatMessage[]>();

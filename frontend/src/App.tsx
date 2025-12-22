@@ -1,7 +1,7 @@
 import { CssBaseline } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { ChatWindow } from './components/ChatWindow';
-import { SplashScreen } from './components/SplashScreen';
+import { ChatWindow } from './components/chat/ChatWindow';
+import { SplashScreen } from './components/chat/SplashScreen';
 
 export default function App() {
   const [phase, setPhase] = useState<'show' | 'hide' | 'done'>('show');

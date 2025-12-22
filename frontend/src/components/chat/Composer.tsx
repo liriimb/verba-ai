@@ -1,6 +1,7 @@
-import { IconButton, TextField, Box } from '@mui/material';
+import { Box, IconButton, TextField } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { useState } from 'react';
+import { INPUT_MAX_ROWS, INPUT_MIN_ROWS } from '../../config/chatUi';
 
 export function Composer({
   disabled,
@@ -23,12 +24,11 @@ export function Composer({
       <TextField
         fullWidth
         placeholder="Type your message..."
-        helperText="Enter to send • Shift+Enter for new line"
         value={text}
-        minRows={1}
-        maxRows={6}
-        multiline
         onChange={(e) => setText(e.target.value)}
+        multiline
+        minRows={INPUT_MIN_ROWS}
+        maxRows={INPUT_MAX_ROWS}
         onKeyDown={(e) => {
           if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
@@ -36,7 +36,9 @@ export function Composer({
           }
         }}
         disabled={disabled}
+        helperText="Enter to send • Shift+Enter for new line"
       />
+
       <IconButton onClick={submit} disabled={disabled || !text.trim()} aria-label="Send">
         <SendIcon />
       </IconButton>

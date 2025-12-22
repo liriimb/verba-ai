@@ -10,8 +10,7 @@ function sleep(ms: number) {
 
 function getErrorMessage(err: unknown): string {
   if (axios.isAxiosError(err)) {
-    const apiMsg =
-      (err.response?.data as { error?: string } | undefined)?.error ?? err.message;
+    const apiMsg = (err.response?.data as { error?: string } | undefined)?.error ?? err.message;
     return apiMsg || 'Request failed.';
   }
 
@@ -30,7 +29,7 @@ export function useChatController(params: {
 
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
+
   const abortRef = useRef<AbortController | null>(null);
 
   function cancelInFlight() {
@@ -63,10 +62,7 @@ export function useChatController(params: {
     const start = Date.now();
 
     try {
-      const data = await sendChatMessage(
-        { message: text, conversationId },
-        controller.signal,
-      );
+      const data = await sendChatMessage({ message: text, conversationId }, controller.signal);
 
       const elapsed = Date.now() - start;
       if (elapsed < minTypingMs) {
