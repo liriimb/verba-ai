@@ -79,4 +79,39 @@ export const chatStyles = {
     display: 'block',
     mt: 0.5,
   },
+
+  splashOverlay: (leaving: boolean) => ({
+    position: 'fixed',
+    inset: 0,
+    display: 'flex',
+    alignItems: 'center',
+   justifyContent: 'center',
+    bgcolor: 'background.default',
+    zIndex: 2000,
+    ...(leaving ? { animation: 'splashOut 500ms ease-in both' } : {}),
+}),
+
+  splashContent: {
+    textAlign: 'center',
+    animation: 'splashIn 650ms ease-out both',
+  },
+
+  splashIcon: {
+    fontSize: 56,
+    mb: 1,
+  },
+
+  splashTitle: {
+    fontWeight: 700,
+    mb: 0.5,
+  },
+
+  splashSubtitle: {
+    opacity: 0.75,
+    mb: 2,
+  },
+
+  promptsWrap: { mt: 1 },
+  promptsHint: { opacity: 0.75, mb: 1 },
+  promptButton: { textTransform: 'none', borderRadius: 999 },
 } as const;

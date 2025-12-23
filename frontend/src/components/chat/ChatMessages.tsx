@@ -4,20 +4,26 @@ import type { ChatMessage } from '../../types/chat';
 import { chatStyles } from '../../utils/chatStyles';
 import { CHAT_HEIGHT } from '../../config/chatUi';
 import { MessageBubble } from './MessageBubble';
+import { SuggestedPrompts } from './SuggestedPrompts';
 
 export function ChatMessages({
   messages,
   isSending,
   bottomRef,
+  onPickPrompt,
 }: {
   messages: ChatMessage[];
   isSending: boolean;
   bottomRef: RefObject<HTMLDivElement | null>;
+  onPickPrompt: (prompt: string) => void;
 }) {
   return (
     <Box sx={{ ...chatStyles.messagesPanel, height: CHAT_HEIGHT }}>
       {messages.length === 0 && (
-        <Typography sx={chatStyles.emptyHint}>Ask a question to start the conversation.</Typography>
+        <>
+          <Typography sx={chatStyles.emptyHint}>Ask a question to start the conversation.</Typography>
+          <SuggestedPrompts onPick={onPickPrompt} />
+        </>
       )}
 
       {messages.map((m) => (

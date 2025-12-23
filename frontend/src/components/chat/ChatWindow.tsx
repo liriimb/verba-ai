@@ -31,7 +31,13 @@ export function ChatWindow() {
       <Paper elevation={2} sx={chatStyles.card}>
         <ChatHeader onNewChat={newChat} />
 
-        <ChatMessages messages={messages} isSending={isSending} bottomRef={bottomRef} />
+        <ChatMessages
+          messages={messages}
+          isSending={isSending}
+          bottomRef={bottomRef}
+          onPickPrompt={send}
+        />
+
 
         {error && <ErrorBanner message={error} />}
 
