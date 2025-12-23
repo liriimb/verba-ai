@@ -2,7 +2,7 @@
 
 A simple full-stack customer-support chat demo: a clean chat UI (frontend) + a mocked AI reply endpoint (backend).
 
-## **It is recommended to run the commands one-by-one instead of all at once!**
+## **It is recommended to run the commands one-by-one instead of all at once, along with executing in CMD(terminal).**
 
 - **Frontend chat UI** with message input + message history, clean design, basic responsiveness(Mobile-friendly)
 - **Backend API** endpoint that receives a user message and returns a mock AI response (rule-based/static)
@@ -108,7 +108,7 @@ Terminal 1 — Backend (FastAPI):
 
 ```
 cd verba-api
-python -m uvicorn app.main:app --reload --port 8000
+.\.venv\Scripts\python -m uvicorn app.main:app --reload --port 8000
 ```
 
 Terminal 2 — Frontend (Vite):
@@ -153,6 +153,8 @@ npm run dev
 in-browser: http://localhost:5173
 ```
 
+In-browser: http://localhost:5173
+
 ---
 
 ## Testing
@@ -193,6 +195,13 @@ cd verba-api
 ```
 npm run format
 ```
+
+### If ran into any errors with command npm i,typecheck,lint,format (due to sometimes scripts not being allowed) do:
+
+```
+powershell -ExecutionPolicy Bypass (command here)
+```
+
 
 ---
 
