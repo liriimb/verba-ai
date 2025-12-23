@@ -21,7 +21,9 @@ export function ChatMessages({
     <Box sx={{ ...chatStyles.messagesPanel, height: CHAT_HEIGHT }}>
       {messages.length === 0 && (
         <>
-          <Typography sx={chatStyles.emptyHint}>Ask a question to start the conversation.</Typography>
+          <Typography sx={chatStyles.emptyHint}>
+            Ask a question to start the conversation.
+          </Typography>
           <SuggestedPrompts onPick={onPickPrompt} />
         </>
       )}

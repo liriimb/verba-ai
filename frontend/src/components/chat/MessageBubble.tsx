@@ -15,10 +15,7 @@ export function MessageBubble({ message }: { message: ChatMessage }) {
         </Avatar>
       )}
 
-      <Paper
-        elevation={1}
-        sx={isUser ? styles.userBubble : styles.assistantBubble}
-      >
+      <Paper elevation={1} sx={isUser ? styles.userBubble : styles.assistantBubble}>
         <Typography variant="body1" sx={styles.messageText}>
           {message.text}
         </Typography>

@@ -38,7 +38,6 @@ export function ChatWindow() {
           onPickPrompt={send}
         />
 
-
         {error && <ErrorBanner message={error} />}
 
         <Composer disabled={isSending} onSend={send} />

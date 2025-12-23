@@ -85,11 +85,11 @@ export const chatStyles = {
     inset: 0,
     display: 'flex',
     alignItems: 'center',
-   justifyContent: 'center',
+    justifyContent: 'center',
     bgcolor: 'background.default',
     zIndex: 2000,
     ...(leaving ? { animation: 'splashOut 500ms ease-in both' } : {}),
-}),
+  }),
 
   splashContent: {
     textAlign: 'center',
